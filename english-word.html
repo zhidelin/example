@@ -1,0 +1,59 @@
+<body>
+<form>
+<label for="word">输入单词：</label><input type="text" id="word" name="word" value="out" /> <input type="button" value="搜 索" id="sub"/>
+</form>
+<br /><br />
+<div id="div1"></div>
+</body>
+<script>
+function getPar(par){
+	var local_url = document.location.href;	
+	var get = local_url.indexOf(par +"=");
+	if(get == -1){
+		return false;	
+	}	
+	var get_par = local_url.slice(par.length + get + 1);	
+	var nextPar = get_par.indexOf("&");
+	if(nextPar != -1){
+		get_par = get_par.slice(0, nextPar);
+	}
+	return get_par;
+}
+var getJson=function (s) {
+            var request = new XMLHttpRequest();
+			
+			var word="";
+			if(s!='sub'){
+				word=getPar('word');
+				document.getElementById('word').value=word;
+			}else{
+				word=document.getElementById('word').value;
+			}
+
+            request.open('GET', 'http://dict.bing.com.cn/api/http/v2/0003462a56234cee982be652b8ea1e5f/en-us/zh-cn/lexicon/?q='+word+'&format=application/json');
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objs=request.responseText;
+					var xjson={};
+					eval("xjson="+objs);
+					var x=xjson['LEX']['C_DEF'][xjson['LEX']['C_DEF'].length-1]['SEN'];
+					var y=xjson['LEX']['HW']['SIG'];
+					var mp3="<audio src='http://media.engkoo.com:8129/en-us/"+y+".mp3' autoplay='autoplay' controls='true' />";
+					var j="";
+					for(var i in x){
+						j+=x[i]['D']+";";
+					}
+					document.getElementById('div1').innerHTML=j+"<br /><br /> "+mp3;
+                }
+            }
+            request.send(null);
+        }
+
+
+
+	getJson();
+	var sub=document.getElementById('sub');
+	sub.onclick=function(){getJson('sub')};
+
+</script>
+</body>
