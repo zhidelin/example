@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+ function aa(a){
+	alert(a.AS.Query);
+ }
+  </script>
+
+  <script>
+  function getBooks(){
+			var jss=document.getElementsByTagName('script');
+			for(var i=0;i<jss.length;i++){
+				if(jss[i].id=="js"){
+					jss[i].remove();
+				}
+			}
+            var script=document.createElement('script');
+            script.setAttribute('id','js');
+            script.setAttribute('src','http://bj1.api.bing.com/qsonhs.aspx?type=cb&cb=aa&q=a&o=a+h+p'); //"json2.php?callback=aa"
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
+
+
+
+  
+// jQuery.getJSON("http://api.bing.com/qsonhs.aspx?q=lin", 
+//function(data) {
+ //   alert(data);
+//}); 
+//http://bj1.api.bing.com/qsonhs.aspx?FORM=ASAPIH&mkt=zh-CN&type=cb&cb=sa_inst.apiCB&q=a&cp=1&o=a+h+p
+//http://bj1.api.bing.com/qsonhs.aspx?cb=aa&q=a&cp=1&o=a+h+p
+onload=function(){
+document.getElementsByTagName('button')[0].onclick=function(){
+	getBooks();
+	};
+}
+  </script>
+ </head>
+ <body>
+  <button>button</button>
+ </body>
+</html>
