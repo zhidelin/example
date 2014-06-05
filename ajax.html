@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ajax</title>
+<style>
+body{padding:100px 0 0 100px;}
+button{ margin-bottom:20px;}
+</style>
+<script>
+  onload=function(){
+  	document.getElementsByTagName('button')[0].onclick=function(){
+  		doAjax("http://api.bing.com/qsonhs.aspx?q=lin",function(data){
+  			document.getElementById('div').innerHTML=data;	
+  		});	
+  	}
+  }
+  
+  function doAjax(url,fun,method,data){  //doAjax(url,fun,[method],[data]);
+  	var method;
+  	var data;
+  	var timeStamp=(function(){
+  		var a=url.indexOf("?");
+  		if(a!=-1&&a!=url.length-1){ 
+  			return "&timetamp=";
+  		}else{
+  			return "?timetamp=";
+  		}
+  	})()+new Date().getTime();
+  	var xmlhttp=new XMLHttpRequest();
+  	xmlhttp.onreadystatechange=function(){
+  		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+  			if(xmlhttp.responseXML == null){
+  				return fun(xmlhttp.responseText);
+  			}else{
+  				return fun(xmlhttp.responseXML);
+  			}
+  		}
+  	}
+  	if(method==undefined){
+  		xmlhttp.open("GET",url+timeStamp,true);
+  	}else{
+  		xmlhttp.open(method,url+timeStamp,true);
+  		if(method.toUpperCase()=="POST"){
+  			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+  		}	
+  	}
+  	if(data==undefined){
+  		xmlhttp.send(null);	
+  	}else{
+  		xmlhttp.send(data);
+  	}
+  }
+</script>
+</head>
+<body>
+
+  <button>button</button>
+  <div id="div"></div>
+
+</body>
+</html>
