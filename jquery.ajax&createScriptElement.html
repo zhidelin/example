@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>ajax&jsonp</title>
+  <script src="jquery-2.0.2.min.js"></script>
+   <script>
+   //1，用jquery.ajax实现跨域获取数据
+	  $(function(){
+		$.ajax({
+			type:'get',
+			url:'http://bj1.api.bing.com/qsonhs.aspx?type=cb&q=a&o=a+h+p',
+			dataType:'jsonp',
+			jsonp:'cb',
+			jsonpCallback:'lin'
+		});
+	  });
+
+	  function lin(data){
+		alert(data.AS.Query);
+	  }
+
+	//2，用创建外链javascript实现跨域获取数据
+	  function getAjax(){			
+		var script=document.createElement('script');
+		script.setAttribute('src','http://bj1.api.bing.com/qsonhs.aspx?type=cb&cb=aa&q=a&o=a+h+p');
+		document.getElementsByTagName('head')[0].appendChild(script);
+		script.remove();
+      }
+
+	  function aa(data){
+		alert(data.AS.Query);
+	  }
+
+	  getAjax();
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>
