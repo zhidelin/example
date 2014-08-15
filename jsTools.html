@@ -21,6 +21,36 @@
 <script>
 $(function(){
   
+  //2秒后预加载图片 start -------------------------------------------------------------
+  function preloadImage(){
+  	var preloadImagesUrl=[
+        "images/1.png",
+        "images/2.png",
+        "images/3.png",
+        "images/4.png",
+        "images/5.png"
+        ];
+  	$.preloadImages = function() {
+  	  for (var i = 0; i < arguments[0].length; i++) {
+  	    $("<img />").attr("src", arguments[0][i]);
+  	  }
+  	}
+  	setTimeout(function(){$.preloadImages(preloadImagesUrl)},2000);
+  }
+  //2秒后预加载图片 end-------------------------------------------------------------  
+  
+  //根据浏览器地址栏参数名获取值 start-----------------------------------------------
+  function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+  //根据浏览器地址栏参数名获取值 end-----------------------------------------------  
+  
+  //判断用户系统 start--------------------------------------------------------------
+  navigator.userAgent.match("iPhone");      //return true or false;
+  //判断用户系统 end--------------------------------------------------------------
+  
 });
 </script>
 </body>
