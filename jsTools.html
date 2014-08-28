@@ -10,14 +10,6 @@
 <body>
 
 
-
-
-
-
-
-
-
-
 <script>
 $(function(){
   
@@ -56,7 +48,48 @@ $(function(){
   	alert("Staff ID 必须为数字！");
   }
   //验证是否为数字 end--------------------------------------------------------------
-	
+
+ //去除safari alert事件默認顯示的網站地址 start--------------------------------------------------------------
+	function delAlertUrl(message){
+		var UA = navigator.userAgent.toLowerCase();
+		if (UA.indexOf("chrome") > 0 || UA.indexOf("safari") > 0) { 
+			var iframe = $('<iframe height="0"  frameborder="0" scrolling="no" src="data:text/plain,"></iframe>');
+			$("body").append(iframe);
+			window.frames[window.frames.length-1].window.alert(message);
+			iframe.remove();			
+		} else {
+			alert(message);
+		}
+	}
+ //去除safari alert事件默認顯示的網站地址 end--------------------------------------------------------------
+  
+ //jquery ajax請求 start--------------------------------------------------------------
+  $.ajax({
+        type: "post",
+        dataType: "json",
+        url: hosturl+'request.do',
+        data:{a:8,b:9},
+        complete :function(){},
+        error:function(){ },    
+        success: function(data){
+        	//take data do something
+	});
+  //jquery ajax請求  end--------------------------------------------------------------
+
+  //js對象，字符串互轉 start--------------------------------------------------------------
+  
+  var str = JSON.stringify({a:9,b:7});
+  var obj = JSON.parse(str);
+  
+  //js對象，字符串互轉 end--------------------------------------------------------------
+  
+  //滾動條運動 start--------------------------------------------------------------
+  
+  document.body.scrollTop="0px";   //"0px"or 0 直接回頂部
+  $('body,html').animate({scrollTop:0},1000);  //動畫效果
+  $("div").scrollLeft(100);         //到左100px
+  
+  //滾動條運動 end--------------------------------------------------------------
   
 });
 </script>
