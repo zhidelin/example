@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cssTools</title>
+<style>
+/*  
+iPhone、Android自带浏览器如何显示定宽布局页面
+http://www.360doc.com/content/13/0321/15/21412_273020562.shtml 
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+*/
+
+/* 当是屏幕并且浏览器宽大于等于100px时， */
+/* 可选 
+    width 
+    height
+    max-width 
+    max-height
+    device-width 
+    device-height 
+    -webkit-device-pixel-ratio: 1/2/3
+*/
+@media screen and (min-width:100px) {   
+  /* css style */
+}
+
+
+
+</style>
+<body>
+</body>
+</head>
+</html>
