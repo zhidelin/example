@@ -1,0 +1,38 @@
+
+/*  
+
+*/
+
+/* 当是屏幕并且浏览器宽大于等于100px时， */
+/* 可选 
+    width 
+    height
+    max-width 
+    max-height
+    device-width 
+    device-height 
+    -webkit-device-pixel-ratio: 1/2/3
+*/
+@media screen and (min-width:100px) {   
+  /* css style */
+}
+
+
+
+	::-webkit-input-placeholder{
+		color:#717171;
+	}
+	input[type="text"]{
+	/* 去掉s2等input选中后显示白底
+	  position:relative;
+	  top:-10000px;
+	  -webkit-transform: translate3d(0, 10000px, 0);
+	  -moz-transform: translate3d(0, 10000px, 0);
+	  transform: translate3d(0, 10000px, 0);
+	 */
+	  -webkit-appearance: none;    /*去掉select等自带样式  */
+	}
+
+
+
+
