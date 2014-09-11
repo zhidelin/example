@@ -1,6 +1,14 @@
 
 /*  
-
+ 清除浮動
+ 
+ 方法1：瑞星
+	.clear:after{content:'\0020';display:block;height:0;clear:both}
+	.clear{*zoom:1}
+方法2：腾讯微博
+	.clear:after{content:'.';clear:both;display:block;height:0;visibility:hidden;
+	line-height:0}
+	.clear{zoom:1}
 */
 
 /* 当是屏幕并且浏览器宽大于等于100px时， */
